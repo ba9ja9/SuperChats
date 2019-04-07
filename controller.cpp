@@ -36,6 +36,9 @@ void Controller::execute_cmd(int cmd){
         case 8:
             remove_chatroom();
             break;
+	case 9:
+	    edit_username(); // (JB)
+	    break;
     }
 }
 
@@ -43,6 +46,9 @@ void Controller::create_user(){
     string username;
     view.username_prompt();
     cin >> username;
+    // validate username (JB)
+    if (User.checkUsername(username) == false)
+	throw exception("Invalid username.\n");
     User* user = new User();
     user->setUsername(username);
     server.add_user(user);
@@ -71,6 +77,9 @@ void Controller::add_user_to_chatroom(){
     else{
         view.chatroom_name_prompt();
         cin >> chatroom_name;
+
+	// Insert function to validate number of users in
+	// the chatroom, before adding user to chatroom. (JB)
 
         for(auto&& x : server.get_chatrooms()){
             if(x.first->get_name() == chatroom_name){
@@ -159,5 +168,24 @@ void Controller::remove_chatroom(){
     }
     if(!foundChat){
         cout << "Chatroom not found.\n" << endl;
+    }
+}
+
+// (JB)
+void Controller::edit_username() {
+    string current_username, new_username;
+    view.username_prompt();
+    cin >> current_username;
+    for (auto x : server.get_users()) {
+        if(current_username == x->getUsername()) {
+            cout << "New username: ";
+            cin >> new_username;
+
+            // validate new username
+            if (User.checkUsername(new_username) == false)
+                 throw exception("Invalid username.\n");
+
+            x->setUsername(new_username);
+        }
     }
 }

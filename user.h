@@ -25,6 +25,7 @@ class User{
         void downgradeMod();
         void downgradeAdmin();
         void downgradeOb();
+	void banUser();
 
         private: 
             string username;

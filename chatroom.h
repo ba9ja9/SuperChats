@@ -12,6 +12,7 @@ class Chatroom{
         void increment_num_users();
         string to_string();
         void add_user(User*);
+	void checkNumUsers(); // (JB)
 
     private: 
         string name;

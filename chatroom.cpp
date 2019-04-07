@@ -38,3 +38,11 @@ void Chatroom::increment_num_users(){
 void Chatroom::add_user(User* user){
     current_users.push_back(user);
 }
+
+// (JB)
+// validate number of users in a chatroom
+void Chatroom::checkNumUsers() {
+    if (current_users.size() > 10) {
+	view.maxed_users_prompt();
+    }
+}

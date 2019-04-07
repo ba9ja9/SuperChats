@@ -54,3 +54,40 @@ void Server::remove_chatroom(Chatroom* chatroom){
     chatrooms.erase(chatroom);
     delete chatroom;
 } 
+
+// (JB)
+// validate number of users on the server
+// wasn't sure if this would actually go into the
+// the code for creating the actual server
+void Server::checkNumUsers() {
+    // server cannot exceed more than 50 users
+    if (users.size() > 50) [
+	view.maxed_users_prompt();
+    }
+}
+
+// (JB)
+void Server::checkNumChatrooms() {
+    // server cannot exceed more than 10 chatrooms
+    if (chatrooms.size() > 10) {
+	view.maxed_chatrooms_prompt();
+    }
+}
+
+// (JB)
+int Server::getNumUsers() {return user.size();}
+
+// (JB)
+int Server::getNumChatrooms() {return chatrooms.size();}
+
+// (JB)
+int Server::getNumModerators() {
+    string num_mod;
+    for (auto x : get_users()) {
+	x->getUsername();
+	if (isMod == true) {
+	    num_mod++;
+	}
+    }
+    return num_mod;
+}
