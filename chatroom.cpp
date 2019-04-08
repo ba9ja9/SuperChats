@@ -46,3 +46,15 @@ void Chatroom::checkNumUsers() {
 	view.maxed_users_prompt();
     }
 }
+
+// (JB)
+// validate chatroom name
+void Chatroom::checkChatName(String chatroom) {
+    for (auto x : server.get_chatrooms()) {
+	if (x.first->get_name() == chatroom_name) {
+	    throw runtime_error{Chatroom already exists.};
+	else
+	    continue;
+	}
+    }
+}

@@ -48,7 +48,7 @@ void Controller::create_user(){
     cin >> username;
     // validate username (JB)
     if (User.checkUsername(username) == false)
-	throw exception("Invalid username.\n");
+	throw runtime_error{"Invalid username.\n"};
     User* user = new User();
     user->setUsername(username);
     server.add_user(user);
@@ -183,7 +183,7 @@ void Controller::edit_username() {
 
             // validate new username
             if (User.checkUsername(new_username) == false)
-                 throw exception("Invalid username.\n");
+                 throw runtime_error{"Invalid username.\n"};
 
             x->setUsername(new_username);
         }

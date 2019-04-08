@@ -13,6 +13,7 @@ class Chatroom{
         string to_string();
         void add_user(User*);
 	void checkNumUsers(); // (JB)
+	void checkChatName(); // (JB)
 
     private: 
         string name;

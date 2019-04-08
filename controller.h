@@ -1,4 +1,6 @@
 #include "view.h"
+#include "server.h" // (JB)
+#include <stdexcept> // (JB)
 
 class Controller{
     public: 
